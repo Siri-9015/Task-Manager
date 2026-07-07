@@ -1,0 +1,20 @@
+{
+  "name": "task-manager-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install --prefix public/taskboard && npm install --prefix server",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix public/taskboard",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "npm run build --prefix public/taskboard",
+    "preview": "npm run preview --prefix public/taskboard",
+    "lint": "npm run lint --prefix public/taskboard"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "nodemailer": "^9.0.3"
+  }
+}
