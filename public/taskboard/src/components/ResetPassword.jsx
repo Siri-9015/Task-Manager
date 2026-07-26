@@ -64,7 +64,7 @@ function ResetPassword() {
     setApiSuccess("");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/reset-request", {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/reset-request`, {
         email: email.trim()
       });
       setApiSuccess(response.data.message);
@@ -87,7 +87,7 @@ function ResetPassword() {
     setApiSuccess("");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/reset-confirm", {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/reset-confirm`, {
         email: email.trim(),
         code: code.trim(),
         newPassword
