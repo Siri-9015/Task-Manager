@@ -43,9 +43,14 @@ function Dashboard() {
     setIsTasksLoading(true);
     setTasksError("");
     try {
-      const response = await axios.get("http://localhost:5000/api/tasks", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/tasks`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setTasks(response.data);
     } catch (err) {
       console.error("Fetch Tasks Error:", err);
@@ -72,7 +77,7 @@ function Dashboard() {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/tasks/${taskId}`,
+        `${import.meta.env.VITE_API_URL}/api/tasks/${taskId}`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -94,7 +99,7 @@ function Dashboard() {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/tasks",
+        `${import.meta.env.VITE_API_URL}/api/tasks`,
         {
           title: newTitle.trim(),
           desc: newDesc.trim() || "No description provided.",
@@ -119,7 +124,7 @@ function Dashboard() {
   const handleDeleteTask = async (taskId) => {
     const token = localStorage.getItem("token");
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/tasks/${taskId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       // Filter out deleted task locally
@@ -138,7 +143,7 @@ function Dashboard() {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/api/copilot",
+        `${import.meta.env.VITE_API_URL}/api/copilot`,
         {
           method: "POST",
           headers: {
@@ -214,7 +219,7 @@ Otherwise, respond with a helpful plain text answer. Keep your text answer conci
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/tasks",
+        `${import.meta.env.VITE_API_URL}/api/tasks`,
         {
           title,
           desc,
